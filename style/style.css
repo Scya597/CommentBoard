@@ -1,0 +1,73 @@
+input {
+  text-align: center;
+  height: 25px;
+  align-items: center;
+}
+
+.container {
+  font-family: 'Roboto', sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin: auto;
+  position: relative;
+  align-items: center;
+}
+
+/*todoItem*/
+
+.todoItem {
+  width: 246px;
+  margin-bottom: 10px;
+}
+
+.todoItem input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
+  float: left;
+}
+.todoItem input[type="text"]:focus,
+.todoItem input[type="text"].focus {
+  border-bottom: solid 2px #969696;
+}
+
+.deleteItem {
+  width: 20px;
+  margin-left: 10px;
+  float: left;
+}
+
+.checkbox {
+  margin-top: -2px;
+}
+
+/*todoList*/
+
+.todoList {
+  width: 310px;
+  height: 440px;
+  float: left;
+  border: 2px black solid;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  margin: 30px;
+}
+
+.ListContent{
+  height:70%;
+  display:flex;
+  align-content:flex-start;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  align-items: baseline;
+}
+
+.deleteList {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
