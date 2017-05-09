@@ -25,11 +25,13 @@ class TodoList extends Component {
       <TodoItem
         key={todo.id}
         todo={todo}
+        time={todo.time}
       />);
 
     return (
       <div className="todoList">
         <h4>{this.props.list.listName}</h4>
+        <h5>{this.props.list.time}</h5>
         <div className="ListContent">
           {renderTodo()}
         </div>
@@ -38,7 +40,7 @@ class TodoList extends Component {
             type="text"
             value={this.state.newTodotext}
             onChange={this.onChange}
-            placeholder="Add TodoItem"
+            placeholder="Name: Reply"
           />
         </form>
       </div>

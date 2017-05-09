@@ -2,6 +2,7 @@
 
 ## start
 ```
-npm start
+npm run build
+node server.js
 ```
-Then go to `http://localhost:8080`
+Then go to `http://localhost:3000`

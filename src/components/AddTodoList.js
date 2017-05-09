@@ -24,9 +24,10 @@ class AddTodoList extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            placeholder="Add TodoList"
+            placeholder="Add Comment"
             value={this.state.text}
             onChange={this.onChange}
+            className="addComment"
           />
         </form>
       </div>

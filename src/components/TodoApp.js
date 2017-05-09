@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import TodoList from './TodoList';
 import AddTodoList from './AddTodoList';
 
@@ -17,27 +18,58 @@ class TodoApp extends Component {
     };
     this.addTodoItemInList = this.addTodoItemInList.bind(this);
     this.addTodoListInApp = this.addTodoListInApp.bind(this);
+    this.fetchData = this.fetchData.bind(this);
+
+    let initial = [];
+    axios.get('/api')
+    .then((res) => {
+      initial = res.data.TodoApp;
+      this.setState({ todoLists: initial });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  fetchData() {
+    axios.get('/api')
+    .then((res) => {
+      const newTodoLists = res.data.TodoApp;
+      this.setState({ todoLists: newTodoLists });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   addTodoItemInList(text, id) {
-    const newTodoLists = cloneData(this.state.todoLists);
-    newTodoLists.forEach((list) => {
-      if (list.listID === id) {
-        list.listContent.push({ id: uuid(), text, completed: false });
-      }
+    axios.post('/api/todoItem', {
+      id, text,
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
     });
-    this.setState({ todoLists: newTodoLists });
+
+    this.fetchData();
   }
 
   addTodoListInApp(text) {
-    const newTodoList = {
+    axios.post('/api/todoList', {
       listID: uuid(),
       listName: text,
       listContent: [],
-    };
-    const newTodoLists = this.state.todoLists;
-    newTodoLists.push(newTodoList);
-    this.setState({ todoLists: newTodoLists });
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+    this.fetchData();
   }
 
   render() {
@@ -47,16 +79,17 @@ class TodoApp extends Component {
         key={list.listID}
         list={list}
         newTodo={this.addTodoItemInList}
+        time={list.time}
       />);
 
     return (
       <div>
         <div className="title">
-          <h1>Todo App</h1>
+          <h1>Comment Board</h1>
           <h6> 物理一 詹雨安 </h6>
-          <AddTodoList newTodoList={this.addTodoListInApp} />
         </div>
         {renderTodoLists()}
+        <AddTodoList newTodoList={this.addTodoListInApp} />
       </div>
     );
   }
